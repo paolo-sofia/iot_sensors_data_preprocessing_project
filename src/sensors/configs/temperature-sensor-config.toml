@@ -1,0 +1,12 @@
+[sensor]
+id="42af02c0-79b5-4803-97e6-0ef37f51035c"
+name="temperature sensor"
+topic="sensors_topic"
+data_topic="sensor_readings_topic"
+frequency=1.0
+type="Temperature"
+
+[producer]
+bootstrap_servers=""
+acks=0
+api_version=[3, 4, 0]
