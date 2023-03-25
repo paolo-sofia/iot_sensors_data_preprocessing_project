@@ -1,10 +1,15 @@
+import json
 from kafka import KafkaConsumer
 from datetime import datetime, timedelta
-from typing import Tuple
+from typing import List, Dict, Union
 import streamlit as st
-from src.sensors import SENSORS_LIST
+import requests
+from src.sensors.sensor_type import SensorFamilyType, QueryOptions
 
 st.set_page_config(layout="wide")
+
+RADIO_OPTION_SENSOR = 'Single sensor'
+RADIO_OPTION_SENSOR_FAMILY = 'Family of sensors'
 
 
 def intro() -> None:
@@ -18,25 +23,67 @@ def intro() -> None:
     return
 
 
-def get_query_values() -> Tuple[str, datetime, datetime]:
+def show_available_sensors() -> List[str]:
+    """Shows the list of all the active sensors (sensors that have sent at least one data through the topic"""
+    consumer: KafkaConsumer = KafkaConsumer('sensors_topic', bootstrap_servers='')
+    return [msg for msg in consumer]
+
+
+def show_available_sensors_family() -> List[str]:
+    return SensorFamilyType.ALL_TYPES
+
+
+def display_form_and_get_query_values(sensor_options: List[str], sensor_type: str) -> Dict[str, Union[str, datetime]]:
     current_datetime: datetime = datetime.now()
-    default_start_time: datetime = current_datetime - timedelta(days=7)
-    sensor: str = st.selectbox(label='sensors', options=['a', 'b'])
-    start_date = st.date_input("Set starting date", value=default_start_time)
-    end_date = st.date_input("Set end date", value=current_datetime)
-    return sensor, start_date, end_date
+    min_start_time: datetime = current_datetime - timedelta(days=7)
+    default_start_time: datetime = current_datetime - timedelta(hours=1)
+    with st.form('data_to_get_form'):
+        start_datetime: datetime = st.slider(
+            "Start timeframe",
+            min_value=min_start_time,
+            max_value=current_datetime,
+            value=default_start_time,
+            step=(timedelta(minutes=1)),
+            format="DD/MM/YY - hh:mm")
+
+        end_datetime: datetime = st.slider(
+            "Start timeframe",
+            min_value=min_start_time,
+            max_value=current_datetime,
+            value=current_datetime,
+            step=(timedelta(minutes=1)),
+            format="DD/MM/YY - hh:mm")
+        selected_sensor: str = st.selectbox(label='sensors', options=sensor_options)
+
+        submitted: bool = st.form_submit_button("Submit")
+        if submitted:
+            return {
+                'sensor': selected_sensor,
+                'sensor_type': sensor_type,
+                'start_datetime': start_datetime,
+                'end_datetime': end_datetime
+            }
+        else:
+            return {}
 
 
 def main() -> None:
     intro()
-    sensor_name, start_date, end_date = get_query_values()
-    st.write(sensor_name)
-    st.write(start_date)
-    st.write(end_date)
+    option: str = st.radio(label='Which data do you want to get?', options=[RADIO_OPTION_SENSOR,
+                                                                            RADIO_OPTION_SENSOR_FAMILY])
+    sensor_type: str = ''
+    if option == RADIO_OPTION_SENSOR:
+        available_sensors = show_available_sensors()
+        sensor_type = QueryOptions.SENSOR
+    else:
+        available_sensors = show_available_sensors_family()
+        sensor_type = QueryOptions.SENSOR_FAMILY
+
+    inputs = display_form_and_get_query_values(available_sensors, sensor_type)
+
+    response: requests.Response = requests.post(url="http://127.0.0.1:8000/sensor_data", data=json.dumps(inputs))
     return
 
 
-if __name__ == '__main__':
-    sensors = [s() for s in SENSORS_LIST]
-
-    main()
+# if __name__ == '__main__':
+main()

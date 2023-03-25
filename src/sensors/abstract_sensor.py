@@ -1,3 +1,4 @@
+import json
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from src.sensors.sensor_type import SensorType
@@ -11,8 +12,10 @@ import tomllib
 class AbstractSensor(ABC):
     config_file: Path
     id: str = ''
+    name: str = ''
     type: str = ''
     topic: str = ''
+    data_topic: str = ''
     frequency: float = 1.0
     producer: KafkaProducer = None
 
@@ -26,7 +29,9 @@ class AbstractSensor(ABC):
 
         self.producer: KafkaProducer = KafkaProducer(**dict(config['producer']))
         self.id: str = config['sensor'].get('id', '')
+        self.name: str = config['sensor'].get('name', '')
         self.topic: str = config['sensor'].get('topic', '')
+        self.data_topic: str = config['sensor'].get('data_topic', '')
 
         self.type: str = config['sensor'].get('type', SensorType.NO_FAMILY_TYPE)
         if self.type not in SensorType.ALL_TYPES:
@@ -49,13 +54,31 @@ class AbstractSensor(ABC):
         """Publish the last rea value to its own custom topic.
         :param current_value: the value read from the sensor to be published.
         :return None"""
-        self.producer.send(self.topic, value=bytes(current_value), key=bytes(self.id))
+        data_readings = {
+            'id': self.id,
+            'name': self.name,
+            'value': current_value,
+            'sensor_type': self.type
+        }
+        data_readings = json.dumps(data_readings).encode('utf-8')
+
+        self.producer.send(self.data_topic, value=data_readings, key=self.id.encode('utf-8'))
+        return
+
+    def publish_sensor_initialization(self) -> None:
+        sensor = {
+            'id': self.id,
+            'name': self.name
+        }
+        sensor = json.dumps(sensor).encode('utf-8')
+        self.producer.send(self.data_topic, value=sensor, key=self.id.encode('utf-8'))
         return
 
     def sensor_loop(self) -> None:
         """Runs the main loop for this sensor: a.k.a, reads the sensor value at the specified interval and publish the
         value on the current topic
         """
+        self.publish_sensor_initialization()
         while True:
             current_value = self.read_sensor_value()
             self.publish_current_value(current_value)
