@@ -1,15 +1,17 @@
 import json
 from abc import ABC, abstractmethod
-from pydantic import BaseModel
+from pathlib import Path
+
+from dataclasses import dataclass, field
 from src.sensors.sensor_type import SensorFamilyType
 from time import sleep
 from kafka import KafkaProducer
-from pathlib import Path
 import tomllib
 
 
-class AbstractSensor(BaseModel, ABC):
-    config_file: Path
+@dataclass
+class AbstractSensor(ABC):
+    config_file: str = field(default_factory=Path)
     id: str = ''
     name: str = ''
     type: str = ''
@@ -26,6 +28,7 @@ class AbstractSensor(BaseModel, ABC):
         with open(config_file, 'rb') as f:
             config = tomllib.load(f)
 
+        config['producer']['api_version'] = tuple(config['producer']['api_version'])
         self.producer: KafkaProducer = KafkaProducer(**dict(config['producer']))
         self.id: str = config['sensor'].get('id', '')
         self.name: str = config['sensor'].get('name', '')
@@ -71,6 +74,7 @@ class AbstractSensor(BaseModel, ABC):
         }
         sensor = json.dumps(sensor).encode('utf-8')
         self.producer.send(self.data_topic, value=sensor, key=self.id.encode('utf-8'))
+        print(f'published {sensor}')
         return
 
     def sensor_loop(self) -> None:

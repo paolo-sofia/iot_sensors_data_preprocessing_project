@@ -1,4 +1,6 @@
 import json
+
+import pandas as pd
 from kafka import KafkaConsumer
 from datetime import datetime, timedelta
 from typing import List, Dict, Union
@@ -67,6 +69,12 @@ def display_form_and_get_query_values(sensor_options: List[str], sensor_type: st
             return {}
 
 
+def display_data(dataframe: pd.DataFrame) -> None:
+    st.markdown(f'### These are some statistics about the sensor')
+    st.dataframe(dataframe, use_container_width=True)
+    return
+
+
 def main() -> None:
     intro()
     option: str = st.radio(label='Which data do you want to get?', options=[RADIO_OPTION_SENSOR,
@@ -82,8 +90,10 @@ def main() -> None:
     inputs = display_form_and_get_query_values(available_sensors, sensor_type)
 
     response: requests.Response = requests.post(url="http://127.0.0.1:8000/sensor_data", data=json.dumps(inputs))
+    df: pd.DataFrame = pd.DataFrame.from_dict(response.text)
+    display_data(df)
     return
 
 
-# if __name__ == '__main__':
-main()
+if __name__ == '__main__':
+    main()
