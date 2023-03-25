@@ -1,0 +1,10 @@
+[sensor]
+id="0ab43949-fc39-40ca-ae0c-db395f469f35"
+topic="sensors_topic"
+frequency=1.0
+type="Distance"
+
+[producer]
+bootstrap_servers=""
+acks=0
+api_version=[3, 4, 0]
