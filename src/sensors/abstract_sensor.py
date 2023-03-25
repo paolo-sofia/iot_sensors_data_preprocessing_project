@@ -1,15 +1,14 @@
 import json
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from src.sensors.sensor_type import SensorType
+from pydantic import BaseModel
+from src.sensors.sensor_type import SensorFamilyType
 from time import sleep
 from kafka import KafkaProducer
 from pathlib import Path
 import tomllib
 
 
-@dataclass
-class AbstractSensor(ABC):
+class AbstractSensor(BaseModel, ABC):
     config_file: Path
     id: str = ''
     name: str = ''
@@ -33,9 +32,9 @@ class AbstractSensor(ABC):
         self.topic: str = config['sensor'].get('topic', '')
         self.data_topic: str = config['sensor'].get('data_topic', '')
 
-        self.type: str = config['sensor'].get('type', SensorType.NO_FAMILY_TYPE)
-        if self.type not in SensorType.ALL_TYPES:
-            self.type = SensorType.NO_FAMILY_TYPE
+        self.type: str = config['sensor'].get('type', SensorFamilyType.NO_FAMILY_TYPE)
+        if self.type not in SensorFamilyType.ALL_TYPES:
+            self.type = SensorFamilyType.NO_FAMILY_TYPE
 
         try:
             self.frequency: float = float(config['sensor'].get('frequency', ''))
