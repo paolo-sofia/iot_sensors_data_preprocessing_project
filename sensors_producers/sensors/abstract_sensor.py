@@ -9,7 +9,7 @@ from time import sleep
 
 from kafka3 import KafkaProducer
 
-from src.sensors_producers.sensor_type import SensorFamilyType
+from sensors_producers.sensor_type import SensorFamilyType
 
 
 @dataclass

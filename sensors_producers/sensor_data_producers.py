@@ -1,7 +1,7 @@
 from threading import Thread
 from typing import List
 
-from sensors_producers import SENSORS_LIST
+from sensors_producers.sensors import SENSORS_LIST
 from sensors_producers.sensors.abstract_sensor import AbstractSensor
 
 if __name__ == '__main__':
