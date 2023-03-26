@@ -1,7 +1,8 @@
-from typing import List
 from threading import Thread
+from typing import List
 
-from src.sensors import SENSORS_LIST, AbstractSensor
+from sensors_producers import SENSORS_LIST
+from sensors_producers.sensors.abstract_sensor import AbstractSensor
 
 if __name__ == '__main__':
     sensors: List[AbstractSensor] = [s() for s in SENSORS_LIST]

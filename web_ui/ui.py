@@ -6,19 +6,19 @@ from datetime import datetime, timedelta
 from typing import List, Dict, Union
 import streamlit as st
 import requests
-from src.sensors.sensor_type import SensorFamilyType, QueryOptions
+from src.sensors_producers.sensor_type import SensorFamilyType, QueryOptions
 
 st.set_page_config(layout="wide")
 
 RADIO_OPTION_SENSOR = 'Single sensor'
-RADIO_OPTION_SENSOR_FAMILY = 'Family of sensors'
+RADIO_OPTION_SENSOR_FAMILY = 'Family of sensors_producers'
 
 
 def intro() -> None:
-    st.write("# Welcome to the sensors UI! 👋")
+    st.write("# Welcome to the sensors_producers UI! 👋")
     st.markdown(
         """
-        In this page you can retrieve information about a single sensor or a family of sensors and view some statistics 
+        In this page you can retrieve information about a single sensor or a family of sensors_producers and view some statistics 
         about them.
         """
     )
@@ -26,7 +26,7 @@ def intro() -> None:
 
 
 def show_available_sensors() -> List[str]:
-    """Shows the list of all the active sensors (sensors that have sent at least one data through the topic"""
+    """Shows the list of all the active sensors_producers (sensors_producers that have sent at least one data through the topic"""
     consumer: KafkaConsumer = KafkaConsumer('sensors_topic', bootstrap_servers='')
     return [msg for msg in consumer]
 
@@ -55,7 +55,7 @@ def display_form_and_get_query_values(sensor_options: List[str], sensor_type: st
             value=current_datetime,
             step=(timedelta(minutes=1)),
             format="DD/MM/YY - hh:mm")
-        selected_sensor: str = st.selectbox(label='sensors', options=sensor_options)
+        selected_sensor: str = st.selectbox(label='sensors_producers', options=sensor_options)
 
         submitted: bool = st.form_submit_button("Submit")
         if submitted:

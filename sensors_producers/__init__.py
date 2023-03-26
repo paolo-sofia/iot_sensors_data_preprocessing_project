@@ -2,9 +2,8 @@ import importlib
 import inspect
 import os
 import sys
-import re
 from typing import Optional, List, Generator
-from src.sensors.abstract_sensor import AbstractSensor
+from src.sensors_producers.sensors.abstract_sensor import AbstractSensor
 from pathlib import Path
 
 SENSORS_LIST: List[str] = []
@@ -25,8 +24,8 @@ def get_module_name(module_name: str) -> Optional[str]:
 
 def get_all_sensors_object(package_name: str, base_dir: str):
     """
-    Helper function used for getting the list of sensors. It lists all the submodules inside the given base_dir
-    directory, imports the submodule and then from it retrieves only the sensors objects and add each sensor to the
+    Helper function used for getting the list of sensors_producers. It lists all the submodules inside the given base_dir
+    directory, imports the submodule and then from it retrieves only the sensors_producers objects and add each sensor to the
     sensors_list
     :param package_name: the package name used for performing the relative import for the submodule
     :param base_dir: the base dir where to get all the submodules

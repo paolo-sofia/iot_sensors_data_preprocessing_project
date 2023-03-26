@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 from datetime import datetime
-from src.sensors.sensor_type import QueryOptions
+from src.sensors_producers.sensor_type import QueryOptions
 
 KAFKA_TOPIC_NAME: str = "SAMPLE_TOPIC_NAME"
 KAFKA_BOOTSTRAP_SERVER: str = "localhost:9092"
