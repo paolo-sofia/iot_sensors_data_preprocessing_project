@@ -1,15 +1,13 @@
 import json
 import tomllib
-from abc import ABC
-from abc import abstractmethod
-from dataclasses import dataclass
-from dataclasses import field
+from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 from pathlib import Path
 from time import sleep
 
 from kafka3 import KafkaProducer
 
-from sensors_producers.sensor_type import SensorFamilyType
+from src.sensor_type import SensorFamilyType
 
 
 @dataclass

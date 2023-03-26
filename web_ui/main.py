@@ -1,12 +1,13 @@
 import json
+from datetime import datetime, timedelta
+from typing import Dict, List, Union
 
 import pandas as pd
-from kafka import KafkaConsumer
-from datetime import datetime, timedelta
-from typing import List, Dict, Union
-import streamlit as st
 import requests
-from src.sensors_producers.sensor_type import SensorFamilyType, QueryOptions
+import streamlit as st
+from kafka3 import KafkaConsumer
+
+from src.sensor_type import QueryOptions, SensorFamilyType
 
 st.set_page_config(layout="wide")
 
@@ -18,15 +19,16 @@ def intro() -> None:
     st.write("# Welcome to the sensors_producers UI! 👋")
     st.markdown(
         """
-        In this page you can retrieve information about a single sensor or a family of sensors_producers and view some statistics 
-        about them.
+        In this page you can retrieve information about a single sensor or a family of sensors_producers and view some 
+        statistics about them.
         """
     )
     return
 
 
 def show_available_sensors() -> List[str]:
-    """Shows the list of all the active sensors_producers (sensors_producers that have sent at least one data through the topic"""
+    """Shows the list of all the active sensors_producers (sensors_producers that have sent at least one data through
+    the topic"""
     consumer: KafkaConsumer = KafkaConsumer('sensors_topic', bootstrap_servers='')
     return [msg for msg in consumer]
 
