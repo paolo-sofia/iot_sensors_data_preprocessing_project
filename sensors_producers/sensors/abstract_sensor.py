@@ -1,4 +1,5 @@
 import json
+import logging
 import tomllib
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
@@ -8,6 +9,9 @@ from time import sleep
 from kafka3 import KafkaProducer
 
 from src.sensor_type import SensorFamilyType
+
+logger = logging.getLogger()
+logger.setLevel(logging.ERROR)
 
 
 @dataclass
@@ -65,7 +69,9 @@ class AbstractSensor(ABC):
         }
         data_readings = json.dumps(data_readings).encode('utf-8')
 
-        self.producer.send(self.data_topic, value=data_readings, key=self.id.encode('utf-8'))
+        return_val = self.producer.send(self.data_topic, value=data_readings, key=self.id.encode('utf-8'))
+
+        logger.debug(f'SENT MESSAGE SUCCEDED {return_val.succeeded()} {data_readings}')
         return
 
     def publish_sensor_initialization(self) -> None:
@@ -74,8 +80,8 @@ class AbstractSensor(ABC):
             'name': self.name
         }
         sensor = json.dumps(sensor).encode('utf-8')
-        self.producer.send(self.data_topic, value=sensor, key=self.id.encode('utf-8'))
-        print(f'published {sensor}')
+        return_val = self.producer.send(self.topic, value=sensor, key=self.id.encode('utf-8'))
+        logger.debug(f'SENT PORCODIOOOOOOOOOOOOOOOOOOOOOOOOO SUCCEDED {return_val.succeeded()} {self.id}')
         return
 
     def sensor_loop(self) -> None:

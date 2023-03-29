@@ -1,12 +1,12 @@
 [sensor]
-id="0ab43949-fc39-40ca-ae0c-db395f469f35"
-name="car-wall distance sensor"
-topic="sensors_topic"
-data_topic="sensor_readings_topic"
-frequency=1.0
-type="Distance"
+id = "0ab43949-fc39-40ca-ae0c-db395f469f35"
+name = "car-wall distance sensor"
+topic = "sensors_topic"
+data_topic = "sensor_readings_topic"
+frequency = 1.0
+type = "Distance"
 
 [producer]
-bootstrap_servers=""
-acks=0
-api_version=[3, 4, 0]
+bootstrap_servers = "broker:9092"
+acks = 0
+api_version = [3, 4, 0]

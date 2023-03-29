@@ -13,4 +13,4 @@ class TemperatureSensor(AbstractSensor):
         """Reads sensor value and stores it into class attribute current_value.
         :return the sensor current value
         """
-        return random.uniform(-20., 40.)
+        return round(random.uniform(-20., 40.), 3)

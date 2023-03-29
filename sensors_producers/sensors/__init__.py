@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from typing import Generator, List, Optional
 
-from app.sensors_producers.sensors.abstract_sensor import AbstractSensor
+from sensors_producers.sensors.abstract_sensor import AbstractSensor
 
 SENSORS_LIST: List[str] = []
 

@@ -1,0 +1,120 @@
+<mxfile host="app.diagrams.net" modified="2023-03-29T18:40:20.187Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="FfEtU6nKby8TxUscnx_h" version="21.1.2" type="device">
+  <diagram name="Pagina-1" id="2yTGUOeHKYYPdLNX3l6r">
+    <mxGraphModel dx="385" dy="136" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-1" target="ep8_KNtbfTimWJOxPyHp-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="324" y="210" />
+              <mxPoint x="390" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-1" value="Sensor 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="289" y="80" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-2" target="ep8_KNtbfTimWJOxPyHp-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-2" value="Sensor 2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="379" y="80" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-3" target="ep8_KNtbfTimWJOxPyHp-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="545" y="210" />
+              <mxPoint x="440" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-3" value="Sensor N" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="80" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-4" value="..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="449" y="80" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-5" target="ep8_KNtbfTimWJOxPyHp-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="340" />
+              <mxPoint x="140" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-5" target="ep8_KNtbfTimWJOxPyHp-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="340" />
+              <mxPoint x="690" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-5" value="KAFKA" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-9" value="Producer&lt;br&gt;Topic: &lt;b&gt;sensor_readings_topic&lt;/b&gt;&lt;br&gt;Topic:&amp;nbsp;&lt;b&gt;sensors_topic&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="140" y="150" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-12" target="ep8_KNtbfTimWJOxPyHp-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-12" value="Spark" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-15" value="Consumer&lt;br&gt;Topic:&amp;nbsp;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;sensor_readings_topic&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="205" y="310" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-16" target="ep8_KNtbfTimWJOxPyHp-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-16" value="Web UI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-17" target="ep8_KNtbfTimWJOxPyHp-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="ep8_KNtbfTimWJOxPyHp-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="460" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="479" y="600" />
+              <mxPoint x="700" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-17" value="API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="359" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-20" value="Consumer&lt;br&gt;Topic:&amp;nbsp;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;sensors_topic&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="590" y="310" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-22" value="Requests data statistics (user input)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="555" width="135" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-24" value="Sensor&#39;s statistics" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="205" y="600" width="115" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-26" value="Sensor&#39;s statistics" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="600" width="115" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ep8_KNtbfTimWJOxPyHp-27" value="User input request(Timeframe, sensor)&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="555" width="181" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

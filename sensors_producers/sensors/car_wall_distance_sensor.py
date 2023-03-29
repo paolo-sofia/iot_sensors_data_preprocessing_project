@@ -13,4 +13,4 @@ class CarWallDistanceSensor(AbstractSensor):
         """Reads sensor value and stores it into class attribute current_value.
         :return the sensor current value
         """
-        return random.uniform((0., 100.), 3)
+        return round(random.uniform(0., 100.), 3)
